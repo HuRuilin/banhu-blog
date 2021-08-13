@@ -1,0 +1,102 @@
+@import "./iconfont/iconfont";
+@import "./element-ui.scss";
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,
+    sans-serif;
+  background-color: #fff;
+  letter-spacing: 1px;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+a:focus,
+a:active {
+  outline: none;
+}
+
+a,
+a:focus,
+a:hover {
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+}
+
+div:focus {
+  outline: none;
+}
+
+p{
+    margin: 0;
+}
+
+.clearfix {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
+
+// main-container global css
+.app-container {
+  padding: 20px;
+}
+
+::-webkit-scrollbar {
+  width: 10px; /*定义纵向滚动条宽度*/
+  height: 10px; /*定义横向滚动条高度*/
+}
+
+// 滚动条样式优化
+::-webkit-scrollbar-track-piece {
+  background-color: #fff;
+  -webkit-border-radius: 0;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  // 滚动条内部滑块
+  background-color: #b8b8b8;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+  border: 2px solid #fff;
+  filter: alpha(opacity = 50);
+  -moz-opacity: 0.5;
+  -khtml-opacity: 0.5;
+  opacity: 0.5;
+  transition: all 200ms;
+}
+::-webkit-scrollbar-thumb:hover {
+  // 鼠标悬停内部滑块
+  transition: all 200ms;
+  background-color: #878987;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0px;
+  li {
+    list-style: none;
+  }
+}
