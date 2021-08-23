@@ -33,6 +33,13 @@ const routes = [
             meta: {
                 title: "热门文章"
             }
+        },
+        {
+            path: "personalCenter",
+            component: () => import("../views/client/personalCenter/index.vue"),
+            meta: {
+                title: "我的主页"
+            }
         }
     ]
 },

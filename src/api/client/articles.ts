@@ -70,3 +70,14 @@ export const starArticle = (data = {}) => {
         data
     })
 }
+
+    /**
+     * 查询当前用户点赞过的文章
+     */
+export const queryStarArticles = (params={}) => {
+    return request({
+        method: "get",
+        url: `${clientBaseUrl}articles/likes`,
+        params
+    })
+}
