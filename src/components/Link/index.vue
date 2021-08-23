@@ -7,6 +7,7 @@
 
 <script>
 import { isExternal } from "@/utils/helper";
+import { onMounted } from '@vue/runtime-core';
 export default {
   props: {
     to: {
@@ -20,9 +21,10 @@ export default {
     },
     attrs() {
       const url = this.to;
+      const origin=window.location.origin
       if (isExternal(url)) {
         return {
-          href: url,
+          href: `${origin}#/linkBridge?target=${url}`,
           target: "_blank",
           rel: "noopener noreferrer",
         };

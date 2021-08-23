@@ -1,16 +1,25 @@
 <template>
   <ul class="wrapper">
     <li class="text item" v-for="(item, idx) in list" :key="idx">
-      <router-link class="link" :to="{ path: `/client/article/${item._id}` }">
+      <custome-link
+        class="link"
+        :to="
+          item.type === 'external' ? item.url : `/client/article/${item._id}`
+        "
+      >
         <i class="top-idx">{{ idx + 1 }}</i>
-        <p class="title">{{ item.title }}</p>
-      </router-link>
+        <p class="title">  <i v-if="item.type === 'external'" class="el-icon-link"></i>{{ item.title }}</p>
+      </custome-link>
     </li>
   </ul>
 </template>
 
 <script>
+import CustomeLink from "@/components/Link/index.vue";
 export default {
+  components: {
+    CustomeLink,
+  },
   props: {
     list: {
       type: Array,

@@ -54,22 +54,16 @@ export default {
       },
     };
   },
-  created() {
-    console.log("导航成功");
-  },
-  computed: {},
-  watch: {},
   methods: {
     handleLogin() {
       this.$refs["form"].validate(async (valid) => {
         if (!valid) return;
         const token = await this.$store.dispatch("adminUsers/login", this.form);
-        if (token) {
-          await this.$store.dispatch("adminUsers/queryUserInfo");
-          const redirect = this.$route.query.redirect;
-          this.$router.replace(redirect || "/admin/articlesManagment");
-          Cookie.set("adminToken", token);
-        }
+        if (!token) return;
+        await this.$store.dispatch("adminUsers/queryUserInfo");
+        const redirect = this.$route.query.redirect;
+        this.$router.replace(redirect || "/admin/articlesManagment");
+        Cookie.set("adminToken", token);
       });
     },
   },

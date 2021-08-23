@@ -1,5 +1,5 @@
 import { getPageTitle } from '@/utils/common'
-const whiteList = ['/admin/login'] // no redirect whitelist
+const whiteList = ['/admin/login','/bridge'] // no redirect whitelist
 import { getToken } from '../utils/auth'
 export default function (router) {
     // 前置守卫
