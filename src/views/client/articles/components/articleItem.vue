@@ -1,7 +1,7 @@
 <template>
-  <!-- <custome-link
+  <custome-link
     :to="item.type === 'external' ? item.url : `/client/article/${item._id}`"
-  > -->
+  >
     <div class="article-item">
       <p class="title">
         <i v-if="item.type === 'external'" class="el-icon-link"></i>
@@ -25,12 +25,12 @@
         </span>
       </p>
     </div>
-  <!-- </custome-link> -->
+  </custome-link>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-// import Link from "@/components/Link/index.vue";
+import Link from "@/components/Link/index.vue";
 import { starArticle } from "@/api";
 export default defineComponent({
   props: {
@@ -42,7 +42,7 @@ export default defineComponent({
     },
   },
   components: {
-    // customeLink: Link,
+    customeLink: Link,
   },
   data() {
     return {

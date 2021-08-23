@@ -1,5 +1,5 @@
 import Hljs from 'highlight.js'
-import 'highlight.js/styles/base16/tomorrow-night.css'
+import 'highlight.js/styles/tomorrow-night.css'
 
 let Highlight = {}
 
