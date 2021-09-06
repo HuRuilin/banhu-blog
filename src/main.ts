@@ -5,6 +5,8 @@ import store from '@/store/index.js'
 import VueCropper from 'vue-cropper'
 import mavonEditor from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
+import Vditor from 'vditor'
+import 'vditor/dist/index.css';
 import "element-plus/packages/theme-chalk/src/base.scss"
 import locale from 'element-plus/lib/locale/lang/zh-cn'
 import 'dayjs/locale/zh-cn'
@@ -12,6 +14,7 @@ import "normalize.css"
 import Highlight from './plugins/highlight.js'
 import registerElemComponents from '@/utils/elemCompRegister.js'
 import dayjs from 'dayjs'
+
 
 const app = createApp(App)
 dayjs.locale('zh-cn')

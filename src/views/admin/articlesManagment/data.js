@@ -28,7 +28,7 @@ export function initTableConfig() {
             {
                 label: '发布状态',
                 prop: 'status',
-                slot: true,
+                isSlot: true,
             },
             { label: '摘要', prop: 'summary', align: 'left' },
             {
@@ -59,7 +59,7 @@ export function initTableConfig() {
                 },
             },
         ],
-        btnGroups: (rowInfo) => {
+        btnsGroup: (rowInfo) => {
             const statusBtnsMap = new Map([
                 [
                     1,

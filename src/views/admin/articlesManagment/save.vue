@@ -77,14 +77,7 @@
           >
             <el-tab-pane name="local" label="本地">
               <el-form-item label="文章内容" prop="mdContent">
-                <!-- <mavon-editor
-                    ref="md-editor"
-                    :value="form.mdContent"
-                    v-model="form.mdContent"
-                    @imgAdd="handleAdd"
-                    @imgDel="handleDel"
-                    @change="handleEdit"
-                  /> -->
+                <div class="vditor-custome-class" ref="vditor"></div>
               </el-form-item>
             </el-tab-pane>
             <el-tab-pane name="external" label="外链">
@@ -111,12 +104,15 @@
         >
       </div>
     </el-form>
+    <el-button @click="test">editor API 测试</el-button>
   </div>
 </template>
 
 <script>
 import { commonRules, personalRules } from "./data";
 import { queryArticleInfo, queryCategoriesList, saveArticle } from "@/api";
+import Vditor from "vditor";
+import { ref } from "vue";
 export default {
   components: {},
   data() {
@@ -150,12 +146,33 @@ export default {
       txt: "",
       // 分类列表
       categories: [],
+      contentEditor: "",
     };
   },
   created() {
     const { id } = this.$route.query;
     this.queryDetail(id);
     this.queryAllCategories();
+  },
+  mounted() {
+    const that = this;
+    const wrapRef = this.$refs["vditor"];
+    this.contentEditor = new Vditor(wrapRef, {
+      height: 360,
+      theme: "classic",
+      toolbarConfig: {
+        pin: true,
+      },
+      cache: {
+        enable: false,
+      },
+      input(content) {
+        that.form.mdContent = content;
+      },
+    });
+  },
+  beforeUnmount() {
+    this.contentEditor.destroy();
   },
   computed: {
     rules() {
@@ -165,10 +182,11 @@ export default {
   },
 
   methods: {
-    // 上传图片
-    async handleAdd(pos, file) {
-      const url = await this.uploadImg(file);
-      this.$refs["md-editor"].$img2Url(pos, url);
+    test() {
+      const mdContent = this.contentEditor.getValue();
+      console.log(mdContent);
+      console.log(this.contentEditor.exportJSON(mdContent));
+      console.log(this.contentEditor.getHTML());
     },
 
     // 切换外链内链
@@ -186,8 +204,6 @@ export default {
           break;
       }
     },
-    // 移除图片
-    handleDel() {},
     // html 转化为纯文本
     htmlToTxt(html) {
       return html
@@ -197,20 +213,18 @@ export default {
         .replace(/ /g, " ")
         .replace(/>/g, " ");
     },
-    handleEdit(value, render) {
-      // 纯文本
-      this.txt = this.htmlToTxt(render);
-      this.form = Object.assign(this.form, {
-        words: this.txt.length,
-        content: render,
-      });
-    },
+
     handleSave(status) {
       this.$refs.form.validate((valid) => {
         if (!valid) return;
-        if (!this.form.summary) {
-          this.form.summary = `${this.txt.slice(0, 50)}......`;
-        }
+      
+        const htmlStr = this.contentEditor.getHTML();
+        const txt = this.htmlToTxt(htmlStr);
+        this.form = Object.assign(this.form, {
+          words: txt.length,
+          content: htmlStr,
+          summary : `${txt.slice(0, 50)}...`
+        });
         this.form.status = status;
         this.save({ ...this.form, author: this.form.author || "Admin" });
       });
@@ -233,6 +247,12 @@ export default {
         if (!id) return;
         const { result } = await queryArticleInfo({ id });
         this.form = Object.assign(this.form, result);
+        const { mdContent } = result;
+        if (mdContent) {
+          this.$nextTick(() => {
+            this.contentEditor.setValue(mdContent, true);
+          });
+        }
       } catch (error) {
         console.error(error);
       }
@@ -280,6 +300,9 @@ export default {
 
   .btns-wrapper {
     @include flex(center, center);
+  }
+  .vditor-custome-class {
+    margin-top: 18px;
   }
 }
 </style>
