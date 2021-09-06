@@ -104,7 +104,6 @@
         >
       </div>
     </el-form>
-    <el-button @click="test">editor API 测试</el-button>
   </div>
 </template>
 
@@ -182,13 +181,6 @@ export default {
   },
 
   methods: {
-    test() {
-      const mdContent = this.contentEditor.getValue();
-      console.log(mdContent);
-      console.log(this.contentEditor.exportJSON(mdContent));
-      console.log(this.contentEditor.getHTML());
-    },
-
     // 切换外链内链
     handleToggle({ name }) {
       switch (name) {
