@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "element-plus": "^1.1.0-beta.8",
+    "element-plus": "^1.1.0-beta.9",
     "highlight.js": "^9.18.5",
     "js-cookie": "^3.0.0",
     "js-md5": "^0.7.3",
@@ -27,7 +27,6 @@
     "sass": "^1.38.0",
     "typescript": "^4.3.2",
     "vite": "^2.4.4",
-    "vite-plugin-style-import": "^1.1.1",
     "vue-tsc": "^0.2.2"
   }
 }

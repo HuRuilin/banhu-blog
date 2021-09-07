@@ -4,7 +4,7 @@
     <div class="client-main">
       <router-view></router-view>
     </div>
-    <!-- <Copyright /> -->
+    <Copyright />
     <Login  />
   </div>
 </template>
@@ -12,11 +12,11 @@
 <script>
 import Login from '@/components/client/Login.vue'
 import NavBar from '@/components/client/NavBar.vue'
-// import Copyright from '@/components/client/Copyright.vue'
+import Copyright from '@/components/client/Copyright.vue'
 export default {
   components: {
     NavBar,
-    // Copyright,
+    Copyright,
     Login
   },
   data() {
@@ -33,7 +33,7 @@ export default {
 .client-container {
   padding-top: 90px;
   // background: no-repeat url(~assets/wallhaven-nme710.jpg) center/cover;
-  background-attachment: fixed;
+//   background-attachment: fixed;
   .clinet-nav {
     position: fixed;
     top: 0;
@@ -48,7 +48,6 @@ export default {
     min-height: calc(100vh - 110px);
     // background-color: #fff;
     position: relative;
-    overflow: hidden;
   }
 }
 </style>

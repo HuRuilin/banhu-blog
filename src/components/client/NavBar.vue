@@ -22,7 +22,7 @@
         <span>{{ nav.name }}</span>
       </div>
 
-      <!-- <screenfull id="screenfull" class="menu-item hover-effect" /> -->
+      <screenfull id="screenfull" class="menu-item hover-effect" />
 
       <div
         v-if="token"

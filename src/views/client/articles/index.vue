@@ -36,6 +36,7 @@ import HotsList from "@/components/client/HotsList.vue";
 import CategoryList from "./components/categories.vue";
 import useArticlesQuery from "./composables/useArticlesQuery";
 import useHotArticles from "./composables/useHotArticles";
+import {ref} from 'vue'
 export default defineComponent({
   name: "articlesList",
   components: {
@@ -51,7 +52,7 @@ export default defineComponent({
       pages,
       articlesList,
       hotArticles,
-      queryArticlesList
+      queryArticlesList,
     };
   },
 });

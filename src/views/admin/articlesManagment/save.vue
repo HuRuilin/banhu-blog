@@ -111,8 +111,8 @@
 import { commonRules, personalRules } from "./data";
 import { queryArticleInfo, queryCategoriesList, saveArticle } from "@/api";
 import Vditor from "vditor";
-import { ref } from "vue";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   components: {},
   data() {
     return {
@@ -209,13 +209,13 @@ export default {
     handleSave(status) {
       this.$refs.form.validate((valid) => {
         if (!valid) return;
-      
+
         const htmlStr = this.contentEditor.getHTML();
         const txt = this.htmlToTxt(htmlStr);
         this.form = Object.assign(this.form, {
           words: txt.length,
           content: htmlStr,
-          summary : `${txt.slice(0, 50)}...`
+          summary: `${txt.slice(0, 50)}...`,
         });
         this.form.status = status;
         this.save({ ...this.form, author: this.form.author || "Admin" });
@@ -274,7 +274,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 <style scoped lang="scss">
 .save-wrapper {
