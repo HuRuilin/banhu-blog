@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Login from '@/components/client/Login.vue'
+import Login from '@/components/client/Login/index.vue'
 import NavBar from '@/components/client/NavBar.vue'
 import Copyright from '@/components/client/Copyright.vue'
 export default {
