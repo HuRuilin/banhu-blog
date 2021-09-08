@@ -53,7 +53,8 @@ export default defineComponent({
   name: "Login",
   setup() {
     const store = useStore();
-    const { duration, content, disabled, startCountDown } = useCountDown();
+    const { duration, content, disabled, startCountDown, resetCountDown } =
+      useCountDown();
     const { form, rules } = useForm();
     const formElem = ref(null);
     const visible = computed(() => store.state["clientUsers"].isVisible);
@@ -96,11 +97,9 @@ export default defineComponent({
     const close = () => {
       store.commit("clientUsers/setVisible", false);
     };
-
-    onUnmounted(() => {
-      if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = 0;
+    watch(visible, (newVal) => {
+      if (!newVal.value) {
+        resetCountDown();
       }
     });
     return {
@@ -111,7 +110,6 @@ export default defineComponent({
       form,
       rules,
       formElem,
-      startCountDown,
       close,
       handleGetCode,
       handleLogin,

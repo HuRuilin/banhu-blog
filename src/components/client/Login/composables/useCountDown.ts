@@ -1,6 +1,6 @@
 import { reactive, toRefs } from 'vue'
 export default function () {
-    const data = reactive({
+    let state = reactive({
         // 倒计时长
         duration: 60,
         // 按钮显示内容
@@ -8,27 +8,37 @@ export default function () {
         // 是否禁用
         disabled: false,
     })
-    let intervalId =0
+    let intervalId = 0
+
+    // 开启倒计时
     const startCountDown = function () {
-        if (data.disabled) return;
-        data.disabled = true;
-        let count = data.duration;
-        data.content = `${count} 后重试`;
-        console.log('显示的内容是',data.content)
+        if (state.disabled) return;
+        state.disabled = true;
+        let count = state.duration;
+        state.content = `${count} 后重试`;
         intervalId = setInterval(() => {
             count -= 1;
             if (count <= 0) {
-                data.content = "重新发送";
+                state.content = "重新发送";
                 clearInterval(intervalId);
-                data.disabled = false;
+                state.disabled = false;
                 return;
             }
-            data.content = `${count} s后重试`;
+            state.content = `${count} s后重试`;
         }, 1000);
         return intervalId
     }
+    // 重置倒计时
+    const resetCountDown = function () {
+        clearInterval(intervalId);
+        intervalId = 0;
+        state.duration = 60;
+        state.content = "发送验证码";
+        state.disabled = false;
+    }
     return {
-        ...toRefs(data),
-        startCountDown
+        ...toRefs(state),
+        startCountDown,
+        resetCountDown
     }
 }
