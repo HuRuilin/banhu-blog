@@ -107,7 +107,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { commonRules, personalRules } from "./data";
 import { queryArticleInfo, queryCategoriesList, saveArticle } from "@/api";
 import Vditor from "vditor";
